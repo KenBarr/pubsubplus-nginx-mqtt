@@ -1,9 +1,6 @@
 var client_messages = 1;
 var client_id_str = "-";
 
-//var backends = ["172.31.14.241:1883", "172.31.12.169:1883"];
-var backends = ["172.31.14.241:1883"];
-
 function getClientId(s) {
     s.on('upload', function (data, flags) {
         if ( data.length == 0  ) {  // Initial calls may contain no data, so
@@ -47,14 +44,18 @@ function setClientId(s) {
     return client_id_str;
 }
 
+function getSeedId(s) {
+    return "default"
+}
+
 function getBackend(s) {
+    var v = s.variables;
     if(s.variables.keyval_backend) {
-        return s.variables.keyval_backend;
+        s.log("Backend server IP known: " + v.keyval_backend);
+        return v.keyval_backend;
     } else {
-//        DoHash, get server
-//        s.variables.keyval_backend = hash_result;
-        s.variables.keyval_backend = backends[backends.length - 1];
-        s.log("Backend server IP =" + s.variables.keyval_backend);
-        return s.variables.keyval_backend;
+        v.keyval_backend = v.mqtt_seed_backend;
+        s.log("Backend server IP set: " + v.keyval_backend);
+        return v.keyval_backend;
     }
 }
