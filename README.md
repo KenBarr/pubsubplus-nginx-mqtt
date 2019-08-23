@@ -1,4 +1,4 @@
-# pubsub+ NGiNX Plus MQTT QoS1 consumer solution
+# PubSub+ NGiNX Plus MQTT QoS1 consumer solution
 Solution based on nginx keyval to always get MQTT consumer back to their QoS1 subscription in a horizontally scaled broker solution
 The fondations of this solution is applicable to getting any client back to a statefull service as that service horizontally scales
 

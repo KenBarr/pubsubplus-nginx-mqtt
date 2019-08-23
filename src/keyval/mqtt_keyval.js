@@ -48,14 +48,18 @@ function getSeedId(s) {
     return "default"
 }
 
+// Expected mqtt_seed_backend format is string of form:
+//  "IP1:PORT1 IP2:PORT2 IP3:PORT3 IP4:PORT4"
 function getBackend(s) {
     var v = s.variables;
     if(s.variables.keyval_backend) {
-        s.log("Backend server IP known: " + v.keyval_backend);
+        //s.log("Backend server IP known: " + v.keyval_backend);
         return v.keyval_backend;
     } else {
-        v.keyval_backend = v.mqtt_seed_backend;
-        s.log("Backend server IP set: " + v.keyval_backend);
+        var backendArray = v.mqtt_seed_backend.split(" ");
+        var rand = Math.floor(Math.random() * backendArray.length);
+        v.keyval_backend = backendArray[rand];
+        //s.log("Backend server IP set: " + v.keyval_backend);
         return v.keyval_backend;
     }
 }
