@@ -12,9 +12,9 @@ Requirement would be to get all 200K connections connected/reconnected within a 
 | ------------- |:-------------:| -----:| ----:|
 | 30000 | 3000 | 2300 | 2300 |
 | 60000 | 3000 | 2300 | 2200 |
-| 100000 | 2x1100 | 2000 | 2000 |
-| 200000 | 4x550 | 1600 | 1400 |
-
+| 100000 | 2200(2x1100) | 2000 | 2000 |
+| 200000 | 2200(4x550) | 1600 | 1400 |
+| 1000000 | 10000(40x250) | 6940(1390x5) | |
 Sample test tool cli: 
 
 sudo ./connectChurn --cip=mqtt:172.31.8.41 --contexts=16 --sessions=60000 --start=3000 --mr=200 --s=0 --cleansession=1 --ka=50 --logintimeout=120
