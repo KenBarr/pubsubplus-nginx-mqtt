@@ -14,7 +14,8 @@ Requirement would be to get all 200K connections connected/reconnected within a 
 | 60000 | 3000 | 2300 | 2200 |
 | 100000 | 2200(2x1100) | 2000 | 2000 |
 | 200000 | 2200(4x550) | 1600 | 1400 |
-| 1000000 | 10000(40x250) | 6940(1390x5) | |
+| 1000000 | 10000(40x250) | 6940(1390x5) | xxxx | Note: cold cache, no parallelism loading so great number
+| 1000000 | 10000(40x250) | 6940(1390x5) | xxxx | Note: warm cache, parallelism loading
 Sample test tool cli: 
 
 sudo ./connectChurn --cip=mqtt:172.31.8.41 --contexts=16 --sessions=60000 --start=3000 --mr=200 --s=0 --cleansession=1 --ka=50 --logintimeout=120
@@ -27,6 +28,7 @@ Disconnect was a forced disconnect from the broker side
 | ------------- |:-------------:| -----:| ----:|
 | 100000 | 2x1100 | 1000 | 980 |
 | 200000 | 4x550 | 1000 | 940 |
+
 
 Note total connections hovered around 100/200K so reconnect rate might have been limited to actual disconnect rate
 
