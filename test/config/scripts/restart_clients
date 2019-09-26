@@ -1,0 +1,23 @@
+scp -i keyPair-ken.pem VMR2_c1-c4_100K_connectionChurn ec2-user@testhost3://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost3 source VMR2_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR2_c5-c8_100K_connectionChurn ec2-user@testhost4://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost4 source VMR2_c5-c8_100K_connectionChurn > /dev/null &
+
+scp -i keyPair-ken.pem VMR3_c1-c4_100K_connectionChurn ec2-user@testhost5://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost5 source VMR3_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR3_c5-c8_100K_connectionChurn ec2-user@testhost6://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost6 source VMR3_c5-c8_100K_connectionChurn > /dev/null &
+
+scp -i keyPair-ken.pem VMR4_c1-c4_100K_connectionChurn ec2-user@testhost7://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost7 source VMR4_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR4_c5-c8_100K_connectionChurn ec2-user@testhost8://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost8 source VMR4_c5-c8_100K_connectionChurn > /dev/null &
+
+scp -i keyPair-ken.pem VMR5_c1-c4_100K_connectionChurn ec2-user@testhost9://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost9 source VMR5_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR5_c5-c8_100K_connectionChurn ec2-user@testhost10://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost10 source VMR5_c5-c8_100K_connectionChurn > /dev/null &
+
+scp -i keyPair-ken.pem VMR1_c5-c8_100K_connectionChurn ec2-user@testhost2://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost2 source VMR1_c5-c8_100K_connectionChurn > /dev/null &
+source VMR1_c1-c4_100K_connectionChurn > /dev/null

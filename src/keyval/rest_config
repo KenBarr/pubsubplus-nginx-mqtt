@@ -1,0 +1,1 @@
+curl -X POST http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{"default":"172.31.8.41:1883 172.31.4.117:1883 172.31.13.100:1883 172.31.11.149:1883"}'	

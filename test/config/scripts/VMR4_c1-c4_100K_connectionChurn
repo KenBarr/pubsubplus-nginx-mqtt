@@ -1,0 +1,4 @@
+sudo ./connectChurn --cip=mqtt:172.31.11.210 --cu=vmr4-c1  --contexts=16 --sessions=25000 --start=250 --mr=0 --qos=0 --cleansession=1 --ka=50 --logintimeout=120 > /dev/null &
+sudo ./connectChurn --cip=mqtt:172.31.3.60 --cu=vmr4-c2 --contexts=16 --sessions=25000 --start=250 --mr=0 --qos=0 --cleansession=1 --ka=50 --logintimeout=120 > /dev/null &
+sudo ./connectChurn --cip=mqtt:172.31.6.252 --cu=vmr4-c3 --contexts=16 --sessions=25000 --start=250 --mr=0 --qos=0 --cleansession=1 --ka=50 --logintimeout=120 > /dev/null &
+sudo ./connectChurn --cip=mqtt:172.31.11.234 --cu=vmr4-c4 --contexts=16 --sessions=25000 --start=250 --mr=0 --qos=0 --cleansession=1 --ka=50 --logintimeout=120

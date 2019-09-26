@@ -53,13 +53,13 @@ function getSeedId(s) {
 function getBackend(s) {
     var v = s.variables;
     if(s.variables.keyval_backend) {
-        //s.log("Backend server IP known: " + v.keyval_backend);
+        s.log("Backend server IP known: " + v.keyval_backend);
         return v.keyval_backend;
     } else {
         var backendArray = v.mqtt_seed_backend.split(" ");
         var rand = Math.floor(Math.random() * backendArray.length);
         v.keyval_backend = backendArray[rand];
-        //s.log("Backend server IP set: " + v.keyval_backend);
+        s.log("Backend server IP set: " + v.keyval_backend);
         return v.keyval_backend;
     }
 }

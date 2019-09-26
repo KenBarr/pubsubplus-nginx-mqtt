@@ -1,0 +1,11 @@
+ssh -i keyPair-ken.pem                                 ec2-user@testhost2 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost3 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost4 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost5 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost6 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost7 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost8 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost9 sudo killall connectChurn
+ssh -i keyPair-ken.pem                                 ec2-user@testhost10 sudo killall connectChurn
+sudo killall connectChurn
+killall -9 ssh

@@ -1,0 +1,77 @@
+echo "Start" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X POST http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"\"}'"
+echo  "Set all new MQTT connections to the 4 interfaces of VMR2" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X PATCH http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"172.31.12.164:1883 172.31.3.244:1883 172.31.8.99:1883 172.31.4.2:1883\"}'"
+echo "Load in 200K connections" `date`
+scp -i keyPair-ken.pem VMR2_c1-c4_100K_connectionChurn ec2-user@testhost3://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost3 source VMR2_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR2_c5-c8_100K_connectionChurn ec2-user@testhost4://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost4 source VMR2_c5-c8_100K_connectionChurn > /dev/null &
+echo "Loop until 200 K connections loaded on VMR2" `date`
+count=0
+while [ ${count} -lt 200000 ]
+do
+  countLine=`curl -u admin:adminadmin http:/admin http://172.31.12.164:8080/SEMP -d "<rpc><show><message-vpn><vpn-name>*</vpn-name></message-vpn></show></rpc>" 2> /dev/null | grep connections`
+  count=${countLine//[!0-9]/}
+done
+
+echo "Set all new MQTT connections to the 4 interfaces of VMR3" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X PATCH http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"172.31.6.48:1883 172.31.5.25:1883 172.31.7.179:1883 172.31.11.161:1883\"}'"
+echo "Load in 200K connections" `date`
+scp -i keyPair-ken.pem VMR3_c1-c4_100K_connectionChurn ec2-user@testhost5://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost5 source VMR3_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR3_c5-c8_100K_connectionChurn ec2-user@testhost6://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost6 source VMR3_c5-c8_100K_connectionChurn > /dev/null &
+echo "Loop until 200 K connections loaded on VMR3" `date`
+count=0
+while [ ${count} -lt 200000 ]
+do
+  countLine=`curl -u admin:adminadmin http:/admin http://172.31.6.48:8080/SEMP -d "<rpc><show><message-vpn><vpn-name>*</vpn-name></message-vpn></show></rpc>" 2> /dev/null | grep connections`
+  count=${countLine//[!0-9]/}
+done
+
+echo "Set all new MQTT connections to the 4 interfaces of VMR4" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X PATCH http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"172.31.13.212:1883 172.31.7.206:1883 172.31.0.180:1883 172.31.7.3:1883\"}'"
+echo "Load in 200K connections" `date`
+scp -i keyPair-ken.pem VMR4_c1-c4_100K_connectionChurn ec2-user@testhost7://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost7 source VMR4_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR4_c5-c8_100K_connectionChurn ec2-user@testhost8://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost8 source VMR4_c5-c8_100K_connectionChurn > /dev/null &
+echo "Loop until 200 K connections loaded on VMR4" `date`
+count=0
+while [ ${count} -lt 200000 ]
+do
+  countLine=`curl -u admin:adminadmin http:/admin http://172.31.13.212:8080/SEMP -d "<rpc><show><message-vpn><vpn-name>*</vpn-name></message-vpn></show></rpc>" 2> /dev/null | grep connections`
+  count=${countLine//[!0-9]/}
+done
+
+echo "Set all new MQTT connections to the 4 interfaces of VMR5" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X PATCH http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"172.31.13.7:1883 172.31.4.127:1883 172.31.1.123:1883 172.31.3.53:1883\"}'"
+echo "Load in 200K connections" `date`
+scp -i keyPair-ken.pem VMR5_c1-c4_100K_connectionChurn ec2-user@testhost9://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost9 source VMR5_c1-c4_100K_connectionChurn > /dev/null &
+scp -i keyPair-ken.pem VMR5_c5-c8_100K_connectionChurn ec2-user@testhost10://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost10 source VMR5_c5-c8_100K_connectionChurn > /dev/null &
+echo "Loop until 200 K connections loaded on VMR5" `date`
+count=0
+while [ ${count} -lt 200000 ]
+do
+  countLine=`curl -u admin:adminadmin http:/admin http://172.31.13.7:8080/SEMP -d "<rpc><show><message-vpn><vpn-name>*</vpn-name></message-vpn></show></rpc>" 2> /dev/null | grep connections`
+  count=${countLine//[!0-9]/}
+done
+
+echo "Set all new MQTT connections to the 4 interfaces of VMR1" `date`
+ssh -i keyPair-ken.pem ec2-user@nginx1a "curl -X PATCH http://localhost:80/api/4/stream/keyvals/mqtt_seed -d '{\"default\":\"172.31.3.41:1883 172.31.5.205:1883 172.31.8.152:1883 172.31.14.17:1883\"}'"
+echo "Load in 200K connections" `date`
+date
+scp -i keyPair-ken.pem VMR1_c5-c8_100K_connectionChurn ec2-user@testhost2://home/ec2-user
+ssh -i keyPair-ken.pem                                 ec2-user@testhost2 source VMR1_c5-c8_100K_connectionChurn > /dev/null &
+source VMR1_c1-c4_100K_connectionChurn > /dev/null &
+echo "Loop until 200 K connections loaded on VMR1" `date`
+count=0
+while [ ${count} -lt 200000 ]
+do
+  countLine=`curl -u admin:adminadmin http:/admin http://172.31.3.41:8080/SEMP -d "<rpc><show><message-vpn><vpn-name>*</vpn-name></message-vpn></show></rpc>" 2> /dev/null | grep connections`
+  count=${countLine//[!0-9]/}
+done
+echo "Done" `date`
