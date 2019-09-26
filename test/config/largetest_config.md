@@ -1,6 +1,6 @@
 # Large Test (1 Million concurrently connected clients)
 
-![Architecture Overview](test/config/resources/1MillionClientTopology.png)
+![Architecture Overview](resources/1MillionClientTopology.png)
 
 ## Solace PubSub+ Broker 
 ### AWS Host
